@@ -1,11 +1,17 @@
 from src.spt_track_duration import get_spotify_duration
+from yt_track_duration import get_youtube_duration
 
-def estimate_story_length(track_duration_sec: int, wpm: int = 178) -> int:
+def spotify_story_length(track_duration: int, wpm: int = 178) -> int:
     words = (wpm / 60) * track_duration_sec  # Words based on WPM and duration
     characters = words * 5  # Approximate characters (average word length)
     return int(characters)
 
+def youtube_story_length(video_duration: int, wpm: int = 178) -> int:
+    words = (wpm / 60) * video_duration_sec  # Words based on WPM and duration
+    characters = words * 5  # Approximate characters (average word length)
+    return int(characters)
+
 # Example usage:
-track_duration_sec = 180  # 3 minutes
-estimated_chars = estimate_story_length(track_duration_sec)
-print(f"Estimated story length: {estimated_chars} characters")
+# track_duration_sec = 180  # 3 minutes
+# estimated_chars = estimate_story_length(track_duration_sec)
+# print(f"Estimated story length: {estimated_chars} characters")
