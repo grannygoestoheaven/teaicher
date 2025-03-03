@@ -1,6 +1,7 @@
 # main.py
 
-from src.video_duration import get_video_details_from_youtube, get_spotify_duration
+from src.spt_track_duration import get_spotify_duration
+from src.yt_vid_duration import get_video_details_from_youtube
 
 def main():
     api_key = 'YOUR_YOUTUBE_API_KEY'  # Replace with your YouTube API key
