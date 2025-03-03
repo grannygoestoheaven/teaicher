@@ -1,12 +1,12 @@
 # main.py
-
+import os
 from src.spt_track_duration import get_spotify_duration
 from src.yt_vid_duration import get_video_details_from_youtube
 
 def main():
-    api_key = 'YOUR_YOUTUBE_API_KEY'  # Replace with your YouTube API key
-    spotify_client_id = 'YOUR_SPOTIFY_CLIENT_ID'  # Replace with your Spotify Client ID
-    spotify_client_secret = 'YOUR_SPOTIFY_CLIENT_SECRET'  # Replace with your Spotify Client Secret
+    youtube_api_key = os.getenv(YOUTUBE_API_KEY)  # Replace with your YouTube API key
+    spotify_client_id = os.getenv(SPOTIFY_CLIENT_ID)  # Replace with your Spotify Client ID
+    spotify_client_secret = os.getenv(SPOTIFY_CLIENT_SECRET)  # Replace with your Spotify Client Secret
 
     # Get the URL input
     service = input("Choose service (YouTube/Spotify): ").strip().lower()
