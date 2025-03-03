@@ -1,6 +1,6 @@
 from src.spt_track_duration import get_spotify_duration
 
-def estimate_story_length(track_duration_sec: get_spotify_duration(), wpm: int = 178) -> int:
+def estimate_story_length(track_duration_sec: int, wpm: int = 178) -> int:
     words = (wpm / 60) * track_duration_sec  # Words based on WPM and duration
     characters = words * 5  # Approximate characters (average word length)
     return int(characters)

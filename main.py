@@ -13,18 +13,18 @@ def main():
     track_url = input("Enter the track URL: ").strip()
 
     if service == "youtube":
-        duration = get_video_details_from_youtube(track_url, api_key)
-        if duration:
-            print(f"The YouTube track duration is: {duration}")
+        video_duration = get_video_details_from_youtube(track_url, api_key)
+        if video_duration:
+            print(f"The YouTube track video_duration is: {video_duration}")
         else:
-            print("Could not retrieve YouTube video duration.")
+            print("Could not retrieve YouTube video video_duration.")
     
     elif service == "spotify":
-        duration = get_spotify_duration(track_url, spotify_client_id, spotify_client_secret)
+        track_duration = get_spotify_duration(track_url, spotify_client_id, spotify_client_secret)
         if duration:
-            print(f"The Spotify track duration is: {duration} seconds")
+            print(f"The Spotify track duration is: {video_duration} seconds")
         else:
-            print("Could not retrieve Spotify track duration.")
+            print("Could not retrieve Spotify track video_duration.")
     
     else:
         print("Invalid service selected. Please choose either YouTube or Spotify.")
