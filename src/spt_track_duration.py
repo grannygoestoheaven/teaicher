@@ -1,5 +1,7 @@
+import os
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+from dotenv import load_dotenv # Load .env from the parent directory
 
 def get_spotify_duration(track_url: str, client_id: str, client_secret: str) -> str:
     """
