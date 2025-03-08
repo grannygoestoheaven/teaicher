@@ -1,11 +1,11 @@
 import os
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-from dotenv import load_dotenv# Load .env from the parent directory
+from dotenv import load_dotenv # Load .env from the parent directory
 
 load_dotenv(dotenv_path='../.env')
 
-def get_spotify_duration(track_url:"https://open.spotify.com/track/4U45aEWtQhrm8A5mxPaFZ7?si=fefed69ae34741c") -> str:
+def get_spotify_duration(track_url) -> str:
     try:
         # Fetch credentials from environment variables
         client_id = os.getenv("SPOTIFY_CLIENT_ID")
@@ -28,7 +28,7 @@ def get_spotify_duration(track_url:"https://open.spotify.com/track/4U45aEWtQhrm8
         return None
 
 if __name__ == "__main__":
-    track_url = "https://open.spotify.com/track/YOUR_TRACK_ID"
+    track_url = "https://open.spotify.com/track/4U45aEWtQhrm8A5mxPaFZ7?si=fefed69ae34741c"
     duration = get_spotify_duration(track_url)
     if duration:
         print(f"Track duration: {duration} seconds")
