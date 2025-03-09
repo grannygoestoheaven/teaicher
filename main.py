@@ -9,7 +9,7 @@ from src.services.text_length import spotify_story_length
 # from src.data.yt_vid_duration import get_video_details_from_youtube
 # from src.utils.estimate_story_length import spotify_story_length
 
-load_dotenv()  # Load env variables once
+load_dotenv() # Load env variables once
 
 def main():
     service = input("Choose service (YouTube/Spotify): ").strip().lower()
