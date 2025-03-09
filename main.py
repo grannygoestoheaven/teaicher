@@ -1,8 +1,9 @@
 # main.py
 import os
-from src.spt_track_duration import get_spotify_duration
-from src.yt_vid_duration import get_video_details_from_youtube
+from src.data.spt_track_duration import get_spotify_duration
+from src.data.yt_vid_duration import get_video_details_from_youtube
 from src.utils.estimate_story_length import spotify_story_length
+from src.config.env_loader import env_loader
 
 def get_duration(service, track_url):
     if service == "youtube":
