@@ -1,6 +1,4 @@
 import pytest
-from src.fetch_spotify_duration import fetch_spotify_duration
-from src.fetch_youtube_duration import fetch_youtube_duration
 from src.services.get_story_length import spotify_story_length, youtube_story_length
 
 @pytest.mark.parametrize("track_duration, wpm, expected", [
