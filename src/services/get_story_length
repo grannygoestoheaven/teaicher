@@ -1,5 +1,5 @@
-from src.spt_track_duration import get_spotify_duration
-# from src.yt_track_duration import get_youtube_duration
+from src.fetch_spotify_duration import fetch_spotify_duration
+from src.fetch_youtube_duration import fetch_youtube_duration
 
 def get_story_length(track_duration: int, wpm: int = 178) -> int:
     

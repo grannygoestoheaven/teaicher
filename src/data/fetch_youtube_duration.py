@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import isodate  # Install with `pip install isodate`
+=======
+import isodate
+>>>>>>> first_steps
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 

@@ -12,6 +12,7 @@ def fetch_spotify_duration(track_url: str, client_id: str, client_secret: str) -
         ))
 
         track_id = track_url.split('/')[-1].split('?')[0]
+<<<<<<< HEAD
         track = sp.track(track_id)
 
         # Handle missing or unexpected data
@@ -20,6 +21,21 @@ def fetch_spotify_duration(track_url: str, client_id: str, client_secret: str) -
             return None
 
         return track['duration_ms'] // 1000  # Return duration in seconds
+=======
+        track = sp.track(track_id)  # Correct method to fetch track details
+
+        # Handle missing or unexpected data
+        duration_ms = track.get('duration_ms')  # Safely access the duration
+        if not duration_ms:
+            print("Track duration not found in response.")
+            return None
+
+        return duration_ms // 1000  # Return duration in seconds
+
+    except Exception as e:
+        print(f"Error fetching Spotify duration: {e}")
+        return None
+>>>>>>> first_steps
 
     except SpotifyException as e:
         print(f"Spotify API error: {e}")
