@@ -1,11 +1,10 @@
-from src.services.generate_story import generate_story
+import openai
 
-def text_to_speech(generate_story(): str) -> bytes:
-    """
-    Generate a speech from the given text using the ElevenLabs API.
-    Args:
-        story(str): The text to convert to speech.
-    Returns:
-        str: The speech generated from the given text.
-    """
-    return f"Speech generated from the text: {text}"
+def text_to_speech(story: str) -> bytes:
+    response = openai.Audio.create(
+        model="tts-1",
+        input=story,
+        voice="alloy"
+    )
+
+    return response['audio']

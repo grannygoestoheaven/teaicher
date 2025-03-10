@@ -1,9 +1,6 @@
-import openai
-import math  # For character-to-token conversion
 import os
-
-from src.config import prompts
-from src.services.get_story_length import get_story_length
+import math  # For character-to-token conversion
+import openai
 
 def generate_story(prompt: str, num_chars: int) -> str:
     tokens_to_use = math.ceil(num_chars / 4)  # 1 token ≈ 4 characters

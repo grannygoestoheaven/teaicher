@@ -1,8 +1,7 @@
 from googleapiclient.discovery import build
-from googleapiclient.errors import HttpErrordef get_youtube_client(api_key: str):
-    """
-    Initialize and return the YouTube API client.
-    """
+from googleapiclient.errors import HttpErrordef 
+
+def get_youtube_client(api_key: str):
     return build('youtube', 'v3', developerKey=api_key)
 
 
