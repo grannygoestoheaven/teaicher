@@ -30,4 +30,3 @@ def test_invalid_prompt():
     # Check that an empty prompt may still return something (depending on your logic)
     assert isinstance(story, str)
     assert len(story) > 0  # Even an empty prompt should return a valid output
-
