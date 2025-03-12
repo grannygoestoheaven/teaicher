@@ -1,5 +1,5 @@
-import pytest
 import os
+import pytest
 from dotenv import load_dotenv
 from src.services.generate_story import generate_story
 

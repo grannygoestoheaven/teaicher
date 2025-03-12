@@ -1,4 +1,5 @@
 import os
+
 from dotenv import load_dotenv
 
 from src.config import prompts
@@ -11,6 +12,7 @@ from src.services.play_audio import play_audio_with_sync
 def main():
     # Step 0: Load environment variables
     load_dotenv()
+    
     client_id = os.environ["SPOTIFY_CLIENT_ID"]
     client_secret = os.environ["SPOTIFY_CLIENT_SECRET"]
     api_key = os.environ["YOUTUBE_API_KEY"]

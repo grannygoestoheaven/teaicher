@@ -1,7 +1,9 @@
-import pytest
 import os
-from src.data.get_track_duration import get_track_duration, extract_service_name
+import pytest
+
 from dotenv import load_dotenv
+
+from src.data.get_track_duration import get_track_duration, extract_service_name
 
 # Load environment variables
 load_dotenv()
