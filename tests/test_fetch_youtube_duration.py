@@ -1,5 +1,5 @@
-import pytest
 import os
+import pytest
 from dotenv import load_dotenv
 from src.data.fetch_youtube_duration import fetch_youtube_duration
 

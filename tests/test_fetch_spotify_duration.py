@@ -24,5 +24,3 @@ def test_invalid_spotify_url():
 def test_missing_duration():
     result = fetch_spotify_duration("https://open.spotify.com/track/no_duration", "client_id", "client_secret")
     assert result is None
-
-
