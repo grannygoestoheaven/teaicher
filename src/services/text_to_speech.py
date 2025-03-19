@@ -17,5 +17,5 @@ def text_to_speech(story: str, filename: str = "story.mp3") -> None:
     )
 
     # Save the audio file in the specified location
-    with open(static_audio_path, 'wb') as audio_file:
+    with open(static_audio_path, 'wb') as speech_file:
         audio_file.write(response['audio'])
