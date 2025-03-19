@@ -4,7 +4,7 @@ import tempfile
 
 def play_audio_with_sync(track_url: str, speech_audio: bytes):
     """
-    Plays a track and speech audio in sync.
+    Plays a track and speech audio in sync, mixing the track at a lower volume.
 
     Args:
     - track_url (str): The URL of the track to play.
@@ -18,6 +18,10 @@ def play_audio_with_sync(track_url: str, speech_audio: bytes):
     # Create VLC media players for the track and speech
     track_player = vlc.MediaPlayer(track_url)
     speech_player = vlc.MediaPlayer(speech_file_path)
+
+    # Set the track volume lower than speech
+    track_player.audio_set_volume(30)  # 0 to 100, lower value for quieter track
+    speech_player.audio_set_volume(100)  # 100 is normal volume for speech
 
     # Start playing the track
     track_player.play()
