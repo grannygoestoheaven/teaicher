@@ -3,3 +3,5 @@ google-api-python-client
 spotipy
 dotenv
 openai
+isodate
+python-vlc

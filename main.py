@@ -45,8 +45,8 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, request, jsonify
 
 from src.config import prompts
-from src.data.get_media_duration import get_media_duration, extract_service_name
-from src.services.get_story_length import get_story_length
+from src.data.get_track_duration import get_track_duration, extract_service_name
+from src.services.get_story_length import spotify_story_length, youtube_story_length
 from src.services.generate_story import generate_story
 from src.services.text_to_speech import text_to_speech
 from src.services.play_audio import play_audio_with_sync
@@ -70,10 +70,10 @@ def generate_story_ui():
 
     # Step 2: Get Media Duration
     service = extract_service_name(track_url)
-    duration = get_media_duration(track_url, client_id, client_secret, api_key)
+    duration = get_track_duration(track_url, client_id, client_secret, api_key)
 
     # Step 3: Determine Story Length
-    story_length = get_story_length(duration)
+    story_length = spotify_story_length(duration)
 
     # Step 4: Generate Story
     story = generate_story(subject, story_length)

@@ -9,7 +9,7 @@ def text_to_speech(story: str, filename: str = "story.mp3") -> None:
     os.makedirs(os.path.dirname(static_audio_path), exist_ok=True)
 
     # Get audio response from OpenAI
-    response = openai.Audio.create(
+    response = openai.Completion.create(
         model="tts-1",
         input=story,
         voice="alloy",
