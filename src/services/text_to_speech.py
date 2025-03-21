@@ -1,4 +1,4 @@
-import openai
+from openai import OpenAI
 import os
 
 def text_to_speech(story: str, filename: str = "story.mp3") -> None:

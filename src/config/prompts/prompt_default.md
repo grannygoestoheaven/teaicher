@@ -1,1 +1,0 @@
-Write an investigative-like style essay about the subject at hand.

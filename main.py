@@ -55,9 +55,9 @@ app = Flask(__name__)
 
 # Load environment variables
 load_dotenv()
-client_id = os.environ["SPOTIFY_CLIENT_ID"]
-client_secret = os.environ["SPOTIFY_CLIENT_SECRET"]
-api_key = os.environ["YOUTUBE_API_KEY"]
+client_id = os.environ.get("SPOTIFY_CLIENT_ID")
+client_secret = os.environ.get("SPOTIFY_CLIENT_SECRET")
+api_key = os.environ.get("YOUTUBE_API_KEY")
 
 @app.route('/')
 def index():
