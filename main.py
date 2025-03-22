@@ -44,7 +44,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, jsonify
 
-from src.config import prompts
+from src.config import patterns
 from src.data.get_track_duration import get_track_duration, extract_service_name
 from src.services.get_story_length import spotify_story_length, youtube_story_length
 from src.services.generate_story import generate_story
@@ -66,7 +66,9 @@ def index():
 @app.route('/generate_story', methods=['POST'])
 def generate_story_ui():
     subject = request.form['subject']
+    style = request.form['style']
     track_url = request.form['track_url']
+    length = request.form['length']
 
     # Step 2: Get Media Duration
     service = extract_service_name(track_url)
