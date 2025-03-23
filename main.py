@@ -66,16 +66,16 @@ def index():
 @app.route('/generate_story', methods=['POST'])
 def generate_story_ui():
     subject = request.form['subject']
-    style = request.form['style']
-    track_url = request.form['track_url']
     length = request.form['length']
+    track_url = request.form['track_url']
 
-    # Step 2: Get Media Duration
-    service = extract_service_name(track_url)
-    duration = get_track_duration(track_url, client_id, client_secret, api_key)
-
-    # Step 3: Determine Story Length
-    story_length = spotify_story_length(duration)
+    # Step 2: Get Media Duration & story_length (Spotify or YouTube)
+    if track_url :
+        service = extract_service_name(track_url)
+        duration = get_track_duration(track_url, client_id, client_secret, api_key)
+        story_length = spotify_story_length(duration) if service == 'spotify' else youtube_story_length(duration)
+    else :
+        story_length = length
 
     # Step 4: Generate Story
     story = generate_story(subject, story_length)

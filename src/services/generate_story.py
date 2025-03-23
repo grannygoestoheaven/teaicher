@@ -1,7 +1,7 @@
 from openai import OpenAI  # OpenAI API client
 import math  # For character-to-token conversion
 
-def generate_story(pattern, nb_of_characters: int) -> str:
+def generate_story(subject, pattern, nb_of_characters: int) -> str:
     tokens_to_use = math.ceil(nb_of_characters / 4)  # 1 token ≈ 4 characters
     
     # client = openai.Client()  # Initialize the client
@@ -16,7 +16,7 @@ def generate_story(pattern, nb_of_characters: int) -> str:
     
     response = client.responses.create(
         model="gpt-4o",
-        input=prompt
+        input=pattern,
         max_tokens=tokens_to_use
     )
     story = response.output_text
