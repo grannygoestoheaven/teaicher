@@ -1,7 +1,7 @@
-import import openai
+from openai import OpenAI  # OpenAI API client
 import os
 
-def text_to_speech(story: str, filename: str = "story.mp3") -> None:
+def text_to_speech(story: str, filename: str = "story.mp3") -> :
     # Set the path to save audio in the static/audio folder
     static_audio_path = os.path.join('static', 'audio', filename)
 
@@ -15,7 +15,10 @@ def text_to_speech(story: str, filename: str = "story.mp3") -> None:
         model="gpt-4o-mini-tts",  # Choose the appropriate TTS model
         voice="en_us_male",  # Select from available voices
         stream=False  # Set to True for streaming audio
-) 
+    )
+
     # Save the audio file in the specified location
     with open(static_audio_path, 'wb') as speech_file:
-        audio_file.write(response['audio'])
+        speech_file.write(response['audio'])  # Writing audio content to file
+
+    return static_audio_path

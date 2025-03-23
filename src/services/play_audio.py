@@ -2,7 +2,7 @@ import vlc
 import time
 import tempfile
 
-def play_audio_with_sync(track_url: str, speech_audio: bytes):
+def play_audio_with_sync(track_url: str, speech_file: bytes):
     """
     Plays a track and speech audio in sync, mixing the track at a lower volume.
 
