@@ -69,6 +69,10 @@ def generate_story_ui():
     length = request.form['length']
     track_url = request.form['track_url']
 
+    # Load the default pattern (first .md file)
+    with open('src/patterns/insightful_brief.md', 'r') as file:
+        pattern = file.read()  # Default pattern content
+
     # Step 2: Get Media Duration & story_length (Spotify or YouTube)
     if track_url :
         service = extract_service_name(track_url)
@@ -78,7 +82,7 @@ def generate_story_ui():
         story_length = length
 
     # Step 4: Generate Story
-    story = generate_story(subject, story_length)
+    story = generate_story(subject, pattern, story_length)
 
     # Step 5: Generate Speech
     speech_audio = text_to_speech(story)
