@@ -66,11 +66,11 @@ def index():
 @app.route('/generate_story', methods=['POST'])
 def generate_story_ui():
     subject = request.form['subject']
-    length = request.form['length']
+    length = int(request.form['length'])
     track_url = request.form['track_url']
 
     # Load the default pattern (first .md file)
-    with open('src/patterns/insightful_brief.md', 'r') as file:
+    with open('src/config/patterns/insightful_brief.md', 'r') as file:
         pattern = file.read()  # Default pattern content
 
     # Step 2: Get Media Duration & story_length (Spotify or YouTube)
