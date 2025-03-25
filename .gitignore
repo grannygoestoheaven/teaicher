@@ -6,3 +6,4 @@ summary_3.rtf
 /tests/.cache
 .cache
 node_modules
+/src/config/patterns/*
