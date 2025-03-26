@@ -34,9 +34,9 @@ def generate_story_ui():
     if track_url :
         service = extract_service_name(track_url)
         duration = get_track_duration(track_url, client_id, client_secret, yt_api_key, )
-        story_length = spotify_story_length(duration) if service == 'spotify' else youtube_story_length(duration)
+        estimated_chars = spotify_story_length(duration) if service == 'spotify' else youtube_story_length(duration)
     else :
-        story_length = user_story_length(user_length) # returns estimated_chars
+        estimated_chars = user_story_length(user_length) # returns estimated_chars
         
     # Read the pattern and inject the variable directly
     with open('src/config/patterns/insightful_brief.md', 'r') as file:
@@ -47,7 +47,7 @@ def generate_story_ui():
         pattern = pattern.replace("{estimated_chars}", str(estimated_chars))
 
     # Step 4: Generate Story
-    story = generate_story(subject, pattern, story_length)
+    story = generate_story(subject, pattern, estimated_chars)
 
     # Step 5: Generate Speech
     speech_audio = elevenlabs_text_to_speech(story)
