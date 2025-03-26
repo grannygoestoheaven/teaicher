@@ -7,3 +7,5 @@ summary_3.rtf
 .cache
 node_modules
 /src/config/patterns/*
+ideas
+*json
