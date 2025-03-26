@@ -4,9 +4,9 @@ from flask import Flask, render_template, request, jsonify
 
 from src.config import patterns
 from src.data.get_track_duration import get_track_duration, extract_service_name
-from src.services.get_story_length import spotify_story_length, youtube_story_length
+from src.services.get_story_length import spotify_story_length, youtube_story_length, user_story_length
 from src.services.generate_story import generate_story
-from src.services.text_to_speech import text_to_speech
+from src.services.text_to_speech import elevenlabs_text_to_speech
 from src.services.play_audio import play_audio_with_sync
 
 app = Flask(__name__)
@@ -23,7 +23,7 @@ def index():
 @app.route('/generate_story', methods=['POST'])
 def generate_story_ui():
     subject = request.form['subject']
-    length = int(request.form['length'])
+    user_length = int(request.form['length'])
     track_url = request.form['track_url']
 
     # Load the default pattern (first .md file)
@@ -36,7 +36,15 @@ def generate_story_ui():
         duration = get_track_duration(track_url, client_id, client_secret, yt_api_key, )
         story_length = spotify_story_length(duration) if service == 'spotify' else youtube_story_length(duration)
     else :
-        story_length = length
+        story_length = user_story_length(user_length) # returns estimated_chars
+        
+    # Read the pattern and inject the variable directly
+    with open('src/config/patterns/insightful_brief.md', 'r') as file:
+        pattern = file.read() # Default pattern content
+        
+        # Pass the estimated_chars into the pattern
+        pattern = pattern.replace("{subject}", str(subject))
+        pattern = pattern.replace("{estimated_chars}", str(estimated_chars))
 
     # Step 4: Generate Story
     story = generate_story(subject, pattern, story_length)

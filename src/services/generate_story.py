@@ -2,6 +2,7 @@ import os
 import math  # For character-to-token conversion
 
 from openai import OpenAI  # OpenAI API client
+# from mistral import Mistral  # Mistral API client
 
 def generate_story(subject, pattern, story_length: int) -> str:
     tokens_to_use = math.ceil(story_length / 4)  # 1 token ≈ 4 characters
@@ -20,7 +21,6 @@ def generate_story(subject, pattern, story_length: int) -> str:
         model="gpt-4o",
         instructions=pattern,
         input=subject,
-        max_completion_tokens=tokens_to_use
     )
     story = response.output_text
     # story = response.choices[0].message.content.strip()
