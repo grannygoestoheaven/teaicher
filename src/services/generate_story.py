@@ -20,7 +20,7 @@ def generate_story(subject, pattern, story_length: int) -> str:
         model="gpt-4o",
         instructions=pattern,
         input=subject,
-        # max_tokens=tokens_to_use
+        max_completion_tokens=tokens_to_use
     )
     story = response.output_text
     # story = response.choices[0].message.content.strip()

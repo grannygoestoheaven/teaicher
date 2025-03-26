@@ -31,3 +31,16 @@ def play_audio_with_sync(track_url: str, speech_file: bytes):
 
     # Start playing the speech
     speech_player.play()
+    
+    # Wait for the speech to finish and fade out the music
+    time.sleep(len(speech_audio) + 3)  # Assuming speech_audio length is the duration of the speech
+
+    # Fade out music (simple volume control, fade out over 3 seconds)
+    for volume in range(100, -1, -1):
+        player.audio_set_volume(volume)
+        time.sleep(0.06)  # Adjust for the fade time
+
+    player.stop()
+    speech_player.stop()
+
+    return story, "path/to/speech_audio.mp3"

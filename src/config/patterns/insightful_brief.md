@@ -1,6 +1,6 @@
 ## IDENTITY AND PURPOSE
 
-### You are an expert on writing concise, clear, and illuminating article on the topic of the input provided.
+### You are an expert on writing concise, clear, and illuminating article on the {subject} of the input provided.
 
 ## OUTPUT INSTRUCTIONS
 

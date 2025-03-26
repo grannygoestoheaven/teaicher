@@ -14,9 +14,6 @@ app = Flask(__name__)
 # Load environment variables
 load_dotenv()
 
-client_id = os.environ.get("SPOTIFY_CLIENT_ID")
-client_secret = os.environ.get("SPOTIFY_CLIENT_SECRET")
-youtube_api_key = os.environ.get("YOUTUBE_API_KEY")
 eleven_labs_api_key = os.environ.get("ELEVEN_LABS_API_KEY")
 
 @app.route('/')
@@ -45,7 +42,7 @@ def generate_story_ui():
     story = generate_story(subject, pattern, story_length)
 
     # Step 5: Generate Speech
-    speech_audio = text_to_speech(story)
+    speech_audio = elevenlabs_text_to_speech(story)
 
     # Step 6: Sync Audio
     play_audio_with_sync(track_url, speech_audio)
