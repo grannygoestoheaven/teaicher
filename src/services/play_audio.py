@@ -2,7 +2,7 @@ import vlc
 import time
 import tempfile
 
-def play_audio_with_sync(track_url: str, speech_file: bytes):
+def play_audio_with_sync(speech_file: bytes, track_url: str = None) -> bool:
     """
     Plays a track and speech audio in sync, mixing the track at a lower volume.
 
@@ -44,3 +44,28 @@ def play_audio_with_sync(track_url: str, speech_file: bytes):
     speech_player.stop()
 
     return story, "path/to/speech_audio.mp3"
+
+def play_audio(speech_audio: bytes) -> None:
+    """
+    Plays the speech audio.
+
+    Args:
+    - speech_audio (bytes): The audio data for speech to play.
+    """
+    # Save speech audio to a temporary file
+    with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as speech_file:
+        speech_file.write(speech_audio)
+        speech_file_path = speech_file.name
+
+    # Create a VLC media player for the speech
+    speech_player = vlc.MediaPlayer(speech_file_path)
+
+    # Start playing the speech
+    speech_player.play()
+
+    # Wait for the speech to finish
+    time.sleep(len(speech_audio) + 3)  # Assuming speech_audio length is the duration of the speech
+
+    speech_player.stop()
+
+    return "path/to/speech_audio.mp3"

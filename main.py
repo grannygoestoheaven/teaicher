@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, jsonify
 
 from src.config import patterns
 from src.data.get_track_duration import get_track_duration, extract_service_name
-from src.services.get_story_length import spotify_story_length, youtube_story_length, user_story_length
+from src.services.get_story_length import get_spotify_story_length, get_youtube_story_length, get_user_story_length
 from src.services.generate_story import generate_story
 from src.services.text_to_speech import elevenlabs_text_to_speech
 from src.services.play_audio import play_audio_with_sync
@@ -31,12 +31,12 @@ def generate_story_ui():
         pattern = file.read()  # Default pattern content
 
     # Step 2: Get Media Duration & story_length (Spotify or YouTube)
-    if track_url :
-        service = extract_service_name(track_url)
-        duration = get_track_duration(track_url, client_id, client_secret, yt_api_key, )
-        estimated_chars = spotify_story_length(duration) if service == 'spotify' else youtube_story_length(duration)
-    else :
-        estimated_chars = user_story_length(user_length) # returns estimated_chars
+    # if not user_length:
+    #     service = extract_service_name(track_url)
+    #     duration = get_track_duration(track_url, client_id, client_secret, yt_api_key, )
+    #     estimated_chars = spotify_story_length(duration) if service == 'spotify' else youtube_story_length(duration)
+    # else :
+    estimated_chars = get_user_story_length(user_length) # returns estimated_chars
         
     # Read the pattern and inject the variable directly
     with open('src/config/patterns/insightful_brief.md', 'r') as file:
@@ -53,7 +53,10 @@ def generate_story_ui():
     speech_audio = elevenlabs_text_to_speech(story)
 
     # Step 6: Sync Audio
-    play_audio_with_sync(track_url, speech_audio)
+    if track_url:
+        play_audio_with_sync(track_url, speech_audio)
+    else:
+        play_audio(speech_audio)
 
     return jsonify({"story": story, "audio_link": "path/to/speech_audio.mp3"})  # Adjust path as needed
 

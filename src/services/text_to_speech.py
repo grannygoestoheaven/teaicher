@@ -1,5 +1,5 @@
 from openai import OpenAI  # OpenAI API client
-from elevenlabs import ElevenLabs # ElevenLabs API client
+from elevenlabs.client import ElevenLabs # ElevenLabs API client
 
 import os
 
@@ -35,17 +35,17 @@ def elevenlabs_text_to_speech(story: str, filename: str = "story.mp3") -> None :
 
     # Define the text and parameters
     text = story
-    voice_id = "YOUR_VOICE_ID"  # Replace with your voice ID
+    voice_id = "JBFqnCBsd6RMkjVDRZzb"  # Replace with your voice ID
     model_id = "eleven_multilingual_v2"
 
     # Generate speech
-    response = client.text_to_speech.convert(
-        voice_id=voice_id,
+    audio = client.text_to_speech.convert(
         text=text,
+        voice_id=voice_id,
         model_id=model_id,
         output_format="mp3_22050_32"
     )
 
     # Save the audio
     with open("output.mp3", "wb") as file:
-        file.write(response)
+        file.write(audio)
