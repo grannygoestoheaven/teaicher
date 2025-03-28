@@ -7,7 +7,7 @@ from src.data.get_track_duration import get_track_duration, extract_service_name
 from src.services.get_story_length import get_spotify_story_length, get_youtube_story_length, get_user_story_length
 from src.services.generate_story import generate_story
 from src.services.text_to_speech import elevenlabs_text_to_speech
-from src.services.play_audio import play_audio_with_sync
+from src.services.play_audio import play_audio_with_sync, play_audio
 
 app = Flask(__name__)
 

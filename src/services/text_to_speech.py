@@ -1,7 +1,7 @@
+import os
+
 from openai import OpenAI  # OpenAI API client
 from elevenlabs.client import ElevenLabs # ElevenLabs API client
-
-import os
 
 def openai_text_to_speech(story: str, filename: str = "story.mp3") -> None :
     # Set the path to save audio in the static/audio folder
@@ -31,7 +31,7 @@ def elevenlabs_text_to_speech(story: str, filename: str = "story.mp3") -> None :
     os.makedirs(os.path.dirname(static_audio_path), exist_ok=True)
 
     # Initialize client
-    client = ElevenLabs(api_key=os.environ.get("ELEVENLABS_API_KEY"))
+    client = ElevenLabs(api_key=os.environ.get("ELEVEN_LABS_API_KEY"))
 
     # Define the text and parameters
     text = story
@@ -45,7 +45,17 @@ def elevenlabs_text_to_speech(story: str, filename: str = "story.mp3") -> None :
         model_id=model_id,
         output_format="mp3_22050_32"
     )
+    
+    audio_bytes = b"".join(audio)
+    # we could return the audio bytes here, but we'll save it to a file instead
 
     # Save the audio
     with open("output.mp3", "wb") as file:
-        file.write(audio)
+        file.write(audio_bytes)
+    
+    # Return the audio bytes    
+    with open("output.mp3", "rb") as f:
+        audio_bytes = f.read()
+    
+    return audio_bytes
+        
