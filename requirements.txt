@@ -6,4 +6,7 @@ spotipy
 openai
 isodate
 elevenlabs
+TTS
+torch
+gradio
 # mutagen

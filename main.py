@@ -26,18 +26,6 @@ def generate_story_ui():
     user_length = int(request.form['length'])
     track_url = request.form['track_url']
 
-    # Load the default pattern (first .md file)
-    with open('src/config/patterns/insightful_brief.md', 'r') as file:
-        pattern = file.read()  # Default pattern content
-
-    # Step 2: Get Media Duration & story_length (Spotify or YouTube)
-    # if not user_length:
-    #     service = extract_service_name(track_url)
-    #     duration = get_track_duration(track_url, client_id, client_secret, yt_api_key, )
-    #     estimated_chars = spotify_story_length(duration) if service == 'spotify' else youtube_story_length(duration)
-    # else :
-    estimated_chars = get_user_story_length(user_length) # returns estimated_chars
-        
     # Read the pattern and inject the variable directly
     with open('src/config/patterns/insightful_brief.md', 'r') as file:
         pattern = file.read() # Default pattern content

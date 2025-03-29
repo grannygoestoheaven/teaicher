@@ -2,6 +2,7 @@ import os
 
 from openai import OpenAI  # OpenAI API client
 from elevenlabs.client import ElevenLabs # ElevenLabs API client
+# from tts
 
 def openai_text_to_speech(story: str, filename: str = "story.mp3") -> str:
     # Set path and create folder if needed
@@ -25,7 +26,7 @@ def openai_text_to_speech(story: str, filename: str = "story.mp3") -> str:
     return static_audio_path
 
 def elevenlabs_text_to_speech(story: str, filename: str = "story.mp3") -> None :
-    # Set the path to save audio in the static/audio folder
+    # Set the path and create folder if needed
     static_audio_path = os.path.join('static', 'audio', filename)
 
     # Ensure the directory exists
@@ -59,4 +60,16 @@ def elevenlabs_text_to_speech(story: str, filename: str = "story.mp3") -> None :
         audio_bytes = f.read()
     
     return audio_bytes
-    
+
+def tts_text_to_speech(story: str, filename: str = "story.mp3") -> str:
+    # Set path and create folder if needed
+    static_audio_path = os.path.join('static', 'audio', filename)
+    os.makedirs(os.path.dirname(static_audio_path), exist_ok=True)
+
+    # Create and save audio
+    audio_bytes = tts.text_to_speech(story)
+
+    with open(static_audio_path, 'wb') as f:
+        f.write(audio_bytes)
+
+    return static_audio_path
