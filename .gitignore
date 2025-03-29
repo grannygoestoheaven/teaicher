@@ -1,4 +1,4 @@
-/a_track_for_a_story/
+/a_track_venv/
 .env
 *.pyc
 __pycache__/
