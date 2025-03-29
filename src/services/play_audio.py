@@ -1,7 +1,7 @@
 import vlc
 import time
 import tempfile
-import mutagen.mp3 import MP3
+# import mutagen.mp3 import MP3
 
 # def play_audio_with_sync(speech_audio: bytes, track_url: str = None) -> tuple:
     # """

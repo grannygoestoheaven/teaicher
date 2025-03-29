@@ -14,7 +14,7 @@ def openai_text_to_speech(story: str, filename: str = "story.mp3") -> str:
     # Create and save audio
     response = client.audio.speech.create(
         model="gpt-4o-mini-tts",
-        voice="en_us_male",
+        voice="cove",
         input=story
     )
     audio_bytes = response['data']
@@ -23,7 +23,6 @@ def openai_text_to_speech(story: str, filename: str = "story.mp3") -> str:
         f.write(audio_bytes)
 
     return static_audio_path
-
 
 def elevenlabs_text_to_speech(story: str, filename: str = "story.mp3") -> None :
     # Set the path to save audio in the static/audio folder
