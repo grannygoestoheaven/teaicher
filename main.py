@@ -6,7 +6,7 @@ from src.config import patterns
 from src.data.get_track_duration import get_track_duration, extract_service_name
 from src.services.get_story_length import get_spotify_story_length, get_youtube_story_length, get_user_story_length
 from src.services.generate_story import generate_story
-from src.services.text_to_speech import openai_text_to_speech, elevenlabs_text_to_speech
+from src.services.text_to_speech import open elevenlabs_text_to_speech
 from src.services.play_audio import play_audio, play_audio_with_sync
 
 app = Flask(__name__)
@@ -26,6 +26,8 @@ def generate_story_ui():
     user_length = int(request.form['length'])
     track_url = request.form['track_url']
 
+    estimated_chars = get_user_story_length(user_length) # returns estimated_chars
+        
     # Read the pattern and inject the variable directly
     with open('src/config/patterns/insightful_brief.md', 'r') as file:
         pattern = file.read() # Default pattern content
