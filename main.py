@@ -50,7 +50,8 @@ def generate_story_ui():
     story = generate_story(subject, pattern, estimated_chars)
 
     # Step 5: Generate Speech
-    speech_audio = elevenlabs_text_to_speech(story)
+    # speech_audio = elevenlabs_text_to_speech(story)
+    speech_audio = openai_text_to_speech(story)
 
     # Step 6: Sync Audio
     if track_url:

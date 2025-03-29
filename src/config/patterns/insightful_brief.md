@@ -8,6 +8,7 @@
 
 # OUTPUT FORMAT
 
+### At the top of the output, include a title of maximum 15 characters, in lowercase with underscores replacing spaces. This will be used as a file name.
 ### The text must be {estimated_chars} characters long
 ### Write in Stefan Zweigs style, not in a grandiose or academic style.
 ### Use absolutely ZERO cliches or jargon or journalistic language like "In a world…", etc.

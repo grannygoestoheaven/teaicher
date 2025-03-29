@@ -1,8 +1,9 @@
 import vlc
 import time
 import tempfile
+import mutagen.mp3 import MP3
 
-def play_audio_with_sync(speech_file: bytes, track_url: str = None) -> bool:
+def play_audio_with_sync(speech_audio: bytes, track_url: str = None) -> tuple:
     """
     Plays a track and speech audio in sync, mixing the track at a lower volume.
 
@@ -15,6 +16,8 @@ def play_audio_with_sync(speech_file: bytes, track_url: str = None) -> bool:
         speech_file.write(speech_audio)
         speech_file_path = speech_file.name
 
+    speech_duration = MP3(speech_file_path).info.length
+    
     # Create VLC media players for the track and speech
     track_player = vlc.MediaPlayer(track_url)
     speech_player = vlc.MediaPlayer(speech_file_path)
@@ -33,7 +36,7 @@ def play_audio_with_sync(speech_file: bytes, track_url: str = None) -> bool:
     speech_player.play()
     
     # Wait for the speech to finish and fade out the music
-    time.sleep(len(speech_audio) + 3)  # Assuming speech_audio length is the duration of the speech
+    time.sleep(len(speech_duraton) + 3)  # Assuming speech_audio length is the duration of the speech
 
     # Fade out music (simple volume control, fade out over 3 seconds)
     for volume in range(100, -1, -1):
@@ -43,7 +46,7 @@ def play_audio_with_sync(speech_file: bytes, track_url: str = None) -> bool:
     player.stop()
     speech_player.stop()
 
-    return story, "path/to/speech_audio.mp3"
+    return story, speech_file_path  # Return the story and path to speech audio
 
 def play_audio(speech_audio: bytes) -> None:
     """
@@ -69,3 +72,48 @@ def play_audio(speech_audio: bytes) -> None:
     speech_player.stop()
 
     return "path/to/speech_audio.mp3"
+
+def play_audio_with_sync(speech_audio: bytes, track_url: str) -> tuple:
+    """
+    Plays a track and speech audio in sync, mixing the track at a lower volume.
+
+    Args:
+    - track_url (str): The URL or path of the track to play (optional).
+    - speech_audio (bytes): The audio data for speech to play.
+
+    Returns:
+    - tuple: (original speech bytes, path to speech temp file)
+    """
+    import tempfile, vlc, time, os
+
+    # Save speech audio to a temporary file
+    with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as speech_file:
+        speech_file.write(speech_audio)
+        speech_file_path = speech_file.name
+
+    # Create VLC players
+    track_player = vlc.MediaPlayer(track_url)
+    track_player.audio_set_volume(30)
+
+    speech_player = vlc.MediaPlayer(speech_file_path)
+    speech_player.audio_set_volume(100)
+
+    # Start playback
+    if track_player:
+        track_player.play()
+    time.sleep(3)  # adjust for sync delay
+    speech_player.play()
+
+    # Wait for speech to finish
+    time.sleep(len(speech_audio) / 32000 + 3)  # ~32000 bytes/sec for mp3_22050_32
+
+    # Fade out music
+    if track_player:
+        for volume in range(30, -1, -1):
+            track_player.audio_set_volume(volume)
+            time.sleep(0.06)
+
+        track_player.stop()
+    speech_player.stop()
+
+    return speech_audio, speech_file_path
