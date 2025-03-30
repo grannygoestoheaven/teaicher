@@ -1,5 +1,4 @@
 dotenv
-flask
 python-vlc
 google-api-python-client
 spotipy
@@ -8,6 +7,5 @@ isodate
 elevenlabs
 TTS
 torch
-gradio
-huggingface_hub==0.25.2
+huggingface_hub==0.28.1
 # mutagen

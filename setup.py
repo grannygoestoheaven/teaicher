@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="a_track_for_a_story",
+    name="teaicher",
     version="0.1.0",
     author="Morgan Saunier",
     description="An AI storytelling tool",
