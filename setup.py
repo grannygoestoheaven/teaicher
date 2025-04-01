@@ -15,7 +15,8 @@ setup(
     "spotipy",
     "isodate",
     "torch",
-    "huggingface_hub==0.28.1"
+    "huggingface_hub==0.28.1",
+    "gradio==5.23.1"
     ],
     extras_require={
     "dev": ["python-dotenv"]
