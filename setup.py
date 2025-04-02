@@ -7,6 +7,7 @@ setup(
     description="An AI storytelling tool",
     packages=find_packages(),
     install_requires=[
+    "python_dotenv",
     "openai",
     "elevenlabs",
     "TTS",
